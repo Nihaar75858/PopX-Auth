@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 const SignUpScreen = ({ formData, setFormData }) => {
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -20,7 +23,7 @@ const SignUpScreen = ({ formData, setFormData }) => {
         <div className="relative mt-5">
           <label
             htmlFor="fullName"
-            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-white pl-1 pr-2 text-purple-500 font-semibold"
+            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-[#F5F5F5] pl-1 pr-2 text-purple-500 font-semibold"
           >
             Full Name
             <span className="text-red-500">*</span>
@@ -39,7 +42,7 @@ const SignUpScreen = ({ formData, setFormData }) => {
         <div className="relative mt-6">
           <label
             htmlFor="phone"
-            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-white pl-1 pr-2 text-purple-500 font-semibold"
+            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-[#F5F5F5] pl-1 pr-2 text-purple-500 font-semibold"
           >
             Phone Number
             <span className="text-red-500">*</span>
@@ -58,7 +61,7 @@ const SignUpScreen = ({ formData, setFormData }) => {
         <div className="relative mt-6">
           <label
             htmlFor="email"
-            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-white pl-1 pr-2 text-purple-500 font-semibold"
+            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-[#F5F5F5] pl-1 pr-2 text-purple-500 font-semibold"
           >
             Email Address
             <span className="text-red-500">*</span>
@@ -77,29 +80,35 @@ const SignUpScreen = ({ formData, setFormData }) => {
         <div className="relative mt-6 ">
           <label
             htmlFor="password"
-            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-white pl-1 pr-2 text-purple-500 font-semibold"
+            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-[#F5F5F5] pl-1 pr-2 text-purple-500 font-semibold"
           >
             Password
             <span className="text-red-500">*</span>
           </label>
           <input
-            type="text"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             placeholder="Enter Password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40 text-sm"
+            className="w-full rounded-sm border border-gray/20 px-4 py-2 pr-16 outline-none focus:border-gray/40 text-sm"
           ></input>
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-sm"
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
         </div>
 
         <div className="relative mt-6">
           <label
             htmlFor="company"
-            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-white pl-1 pr-2 text-purple-500 font-semibold"
+            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-[#F5F5F5] pl-1 pr-2 text-purple-500 font-semibold"
           >
             Company Name
-            <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -136,7 +145,10 @@ const SignUpScreen = ({ formData, setFormData }) => {
           </div>
         </div>
 
-        <button onClick={() => navigate("/")}className="w-full mt-14 bg-[#7431FE] p-2 rounded-sm text-white font-semibold cursor-pointer">
+        <button
+          onClick={() => navigate("/")}
+          className="w-full mt-14 bg-[#7431FE] p-2 rounded-sm text-white font-semibold cursor-pointer"
+        >
           Create Account
         </button>
       </div>

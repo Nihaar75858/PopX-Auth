@@ -29,8 +29,10 @@ const LoginScreen = ({ formData }) => {
       return;
     }
 
-    navigate("/");
+    navigate("/profile");
   };
+
+  const isDisabled = !loginformData.email || !loginformData.password;
 
   return (
     <>
@@ -43,7 +45,7 @@ const LoginScreen = ({ formData }) => {
         <div className="relative">
           <label
             htmlFor="email"
-            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-white pl-1 pr-2 text-purple-500 font-semibold"
+            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-[#F5F5F5] pl-1 pr-2 text-purple-500 font-semibold"
           >
             Email Address
           </label>
@@ -61,7 +63,7 @@ const LoginScreen = ({ formData }) => {
         <div className="relative mt-6 ">
           <label
             htmlFor="password"
-            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-white pl-1 pr-2 text-purple-500 font-semibold"
+            className="absolute left-2 -translate-y-1/2 text-purple/20 text-sm bg-[#F5F5F5] pl-1 pr-2 text-purple-500 font-semibold"
           >
             Password
           </label>
@@ -78,8 +80,13 @@ const LoginScreen = ({ formData }) => {
 
         <button
           onClick={handleSubmit}
-          className="w-full mt-5 bg-gray-300 p-2 rounded-sm text-white font-semibold"
-          disabled
+          className={`w-full mt-5 p-2 rounded-sm text-white font-semibold transition
+          ${
+            isDisabled
+              ? "bg-gray-300 cursor-not-allowed"
+              : "bg-[#7431FE] cursor-pointer"
+          }`}
+          disabled={isDisabled}
         >
           Login
         </button>
