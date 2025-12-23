@@ -14,14 +14,14 @@ const LandingScreen = () => {
 
         <div className="justify-center">
           <button
-            onClick={() => navigate("/")}
-            className="bg-blue-400 mb-5 w-full p-2 rounded-sm text-white font-semibold"
+            onClick={() => navigate("/signup")}
+            className="bg-[#7431FE] mb-5 w-full p-2 rounded-sm text-white font-semibold cursor-pointer"
           >
             Create Account
           </button>
           <button
             onClick={() => navigate("/login")}
-            className="bg-purple-500 mb-5 w-full p-2 rounded-sm font-semibold"
+            className="bg-purple-500 mb-5 w-full p-2 rounded-sm font-semibold cursor-pointer"
           >
             Already Registered? Login
           </button>

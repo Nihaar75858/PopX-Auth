@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const LoginScreen = () => {
-  const formData = {
-    email: '',
-    password: ''
-  }
+const LoginScreen = ({ formData }) => {
+  const [loginformData, setLoginFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setLoginFormData({
+      ...loginformData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = () => {
+    if (!loginformData.email || !loginformData.password) {
+      alert("Please fill all the data.");
+      return;
+    }
 
-  }
+    if (
+      !(loginformData.email === formData.email) ||
+      !(loginformData.password === formData.password)
+    ) {
+      alert("The data does not match the given credentials. Please try again.");
+      return;
+    }
+
+    navigate("/");
+  };
 
   return (
     <>
@@ -28,8 +50,11 @@ const LoginScreen = () => {
           <input
             type="text"
             id="email"
+            name="email"
             placeholder="Enter email Address"
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40"
+            value={loginformData.email}
+            onChange={handleChange}
+            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40 text-sm"
           ></input>
         </div>
 
@@ -43,12 +68,19 @@ const LoginScreen = () => {
           <input
             type="text"
             id="password"
+            name="password"
             placeholder="Enter Password"
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40"
+            value={loginformData.password}
+            onChange={handleChange}
+            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40 text-sm"
           ></input>
         </div>
 
-        <button className="w-full mt-5 bg-gray-300 p-2 rounded-sm text-white font-semibold" disabled>
+        <button
+          onClick={handleSubmit}
+          className="w-full mt-5 bg-gray-300 p-2 rounded-sm text-white font-semibold"
+          disabled
+        >
           Login
         </button>
       </div>
