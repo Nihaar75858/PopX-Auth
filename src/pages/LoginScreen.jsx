@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginScreen = ({ formData }) => {
+  // Set Login Form Data
   const [loginformData, setLoginFormData] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
 
+  // Save Changes by Name
   const handleChange = (e) => {
     setLoginFormData({
       ...loginformData,
@@ -15,6 +17,7 @@ const LoginScreen = ({ formData }) => {
     });
   };
 
+  // Validate and allow User to go to Profile page
   const handleSubmit = () => {
     if (!loginformData.email || !loginformData.password) {
       alert("Please fill all the data.");
@@ -37,11 +40,13 @@ const LoginScreen = ({ formData }) => {
   return (
     <>
       <div className="p-4">
+        {/* Header */}
         <h1 className="font-bold text-2xl w-50">Signin to your PopX account</h1>
         <p className="w-60 mb-5">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit,
         </p>
 
+        {/* Login Form Data (will be checked by SignUpScreen's Data ) */}
         <div className="relative">
           <label
             htmlFor="email"
@@ -56,7 +61,7 @@ const LoginScreen = ({ formData }) => {
             placeholder="Enter email Address"
             value={loginformData.email}
             onChange={handleChange}
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40 text-sm"
+            className="w-full rounded-sm border border-[#CBCBCB] px-4 py-2 outline-none focus:border-[#E70B897B] focus:ring-0 text-sm"
           ></input>
         </div>
 
@@ -74,10 +79,11 @@ const LoginScreen = ({ formData }) => {
             placeholder="Enter Password"
             value={loginformData.password}
             onChange={handleChange}
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40 text-sm"
+            className="w-full rounded-sm border border-[#CBCBCB] px-4 py-2 outline-none focus:border-[#E70B897B] focus:ring-0 text-sm"
           ></input>
         </div>
 
+        {/* Submit Button (disabled until data is added in all fields) */}
         <button
           onClick={handleSubmit}
           className={`w-full mt-5 p-2 rounded-sm text-white font-semibold transition

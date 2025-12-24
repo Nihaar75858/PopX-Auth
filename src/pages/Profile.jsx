@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import defaultProfile from '../assets/default_profile.jpg';
+import defaultProfile from "../assets/default_profile.jpg";
 import { FaCamera } from "react-icons/fa";
 
 const Profile = ({ formData }) => {
+  // Set Profile Picture by Camera Button
   const [profile, setProfile] = useState(null);
 
+  // Call picture using File URL
   const handleProfileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -15,6 +17,7 @@ const Profile = ({ formData }) => {
   return (
     <>
       <div className="p-4 bg-white">
+        {/* Header */}
         <h2 className="">Account Settings</h2>
       </div>
 
@@ -31,6 +34,7 @@ const Profile = ({ formData }) => {
               />
             </div>
 
+            {/* Camera Button + Input */}
             <button
               type="button"
               onClick={() => document.getElementById("profileUpload").click()}
@@ -47,6 +51,7 @@ const Profile = ({ formData }) => {
             />
           </div>
 
+          {/* Name + Email displayed */}
           <div className="mb-10">
             <p className="font-semibold">
               {formData.fullName || "default name"}{" "}
@@ -55,6 +60,7 @@ const Profile = ({ formData }) => {
           </div>
         </div>
 
+        {/* Description */}
         <div className="w-full text-sm">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

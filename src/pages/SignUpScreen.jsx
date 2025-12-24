@@ -4,8 +4,10 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
 const SignUpScreen = ({ formData, setFormData }) => {
+  // Set whether Password is displayed or hidden
   const [showPassword, setShowPassword] = useState(false);
 
+  // Save Changes by Name
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -13,6 +15,7 @@ const SignUpScreen = ({ formData, setFormData }) => {
     });
   };
 
+  // Submit data and return back to main page
   const handleSubmit = () => {
     const requiredFields = ["fullName", "phone", "email", "password", "option"];
 
@@ -57,7 +60,7 @@ const SignUpScreen = ({ formData, setFormData }) => {
             placeholder="Enter full Name"
             value={formData.fullName}
             onChange={handleChange}
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40 text-sm"
+            className="w-full rounded-sm border border-[#CBCBCB] px-4 py-2 outline-none focus:border-[#E70B897B] focus:ring-0 text-sm"
           ></input>
         </div>
 
@@ -76,7 +79,7 @@ const SignUpScreen = ({ formData, setFormData }) => {
             placeholder="Enter phone Number"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40 text-sm"
+            className="w-full rounded-sm border border-[#CBCBCB] px-4 py-2 outline-none focus:border-[#E70B897B] focus:ring-0 text-sm"
           ></input>
         </div>
 
@@ -95,7 +98,7 @@ const SignUpScreen = ({ formData, setFormData }) => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter email Address"
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40 text-sm"
+            className="w-full rounded-sm border border-[#CBCBCB] px-4 py-2 outline-none focus:border-[#E70B897B] focus:ring-0 text-sm"
           ></input>
         </div>
 
@@ -114,7 +117,7 @@ const SignUpScreen = ({ formData, setFormData }) => {
             placeholder="Enter Password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 pr-16 outline-none focus:border-gray/40 text-sm"
+            className="w-full rounded-sm border border-[#CBCBCB] px-4 py-2 pr-16 outline-none focus:border-[#E70B897B] focus:ring-0 text-sm"
           ></input>
           <button
             type="button"
@@ -139,7 +142,7 @@ const SignUpScreen = ({ formData, setFormData }) => {
             placeholder="Enter Company Name"
             value={formData.company}
             onChange={handleChange}
-            className="w-full rounded-sm border border-gray/20 px-4 py-2 outline-none focus:border-gray/40 text-sm"
+            className="w-full rounded-sm border border-[#CBCBCB] px-4 py-2 outline-none focus:border-[#E70B897B] focus:ring-0 text-sm"
           ></input>
         </div>
 
@@ -148,28 +151,33 @@ const SignUpScreen = ({ formData, setFormData }) => {
             Are you an Agency?<span className="text-red-500">*</span>
           </p>
           <div className="flex gap-6">
-            {["Yes", "No"].map((val) => (
-              <label
-                key={val}
-                className="flex items-center gap-x-4 cursor-pointer"
-              >
-                <input
-                  type="radio"
-                  name="option"
-                  value={val}
-                  checked={formData.option === val}
-                  onChange={handleChange}
-                  className="accent-[#7431FE]"
-                />
-                {val}
-              </label>
-            ))}
+            {["Yes", "No"].map((val) => {
+              const isChecked = formData.option === val;
+              return (
+                <label
+                  key={val}
+                  className="flex items-center gap-x-4 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="option"
+                    value={val}
+                    checked={isChecked}
+                    onChange={handleChange}
+                    className={
+                      isChecked ? "accent-[#7431FE]" : "accent-gray-400"
+                    }
+                  />
+                  {val}
+                </label>
+              );
+            })}
           </div>
         </div>
 
         <button
           onClick={handleSubmit}
-          className="w-full mt-14 bg-[#7431FE] p-2 rounded-sm text-white font-semibold cursor-pointer"
+          className="w-full mt-20 bg-[#7431FE] p-2 rounded-sm text-white font-semibold cursor-pointer"
         >
           Create Account
         </button>
